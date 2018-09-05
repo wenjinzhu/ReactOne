@@ -89,12 +89,21 @@ const BasicStack = createStackNavigator({
 
 BasicStack.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
+  let animationEnabled = true;
+  let swipeEnabled = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;
+    animationEnabled = false;
+    swipeEnabled = false;
+  }else {
+	animationEnabled = true;
+    swipeEnabled = true;
   }
 
   return {
     tabBarVisible,
+	animationEnabled,
+	swipeEnabled,
   };
 };
 
@@ -188,12 +197,21 @@ const AdvanceStack = createStackNavigator({
 
 AdvanceStack.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
+  let animationEnabled = true;
+  let swipeEnabled = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;
+    animationEnabled = false;
+    swipeEnabled = false;
+  }else {
+	animationEnabled = true;
+    swipeEnabled = true;
   }
 
   return {
     tabBarVisible,
+	animationEnabled,
+	swipeEnabled,
   };
 };
 
@@ -278,12 +296,21 @@ const IOSStack = createStackNavigator({
 
 IOSStack.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
+  let animationEnabled = true;
+  let swipeEnabled = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;
+    animationEnabled = false;
+    swipeEnabled = false;
+  }else {
+	animationEnabled = true;
+    swipeEnabled = true;
   }
 
   return {
     tabBarVisible,
+	animationEnabled,
+	swipeEnabled,
   };
 };
 
@@ -389,12 +416,275 @@ AndroidStack.navigationOptions = ({ navigation }) => {
 };
 
 
+
+
+
+class FlatListComponent extends React.Component {
+  
+  render() {
+    return (
+      <View style={styles.container}>
+        <FlatList
+          data={[
+            {key: 'AccessibiltyInfo', value: 'https://reactnative.cn/docs/0.51/accessibilityinfo/'},
+            {key: 'ActivityIndicator', value: 'https://reactnative.cn/docs/0.51/activityindicator/'},
+            {key: 'Button', value: 'https://reactnative.cn/docs/0.51/button/'},
+            {key: 'Checkbox', value: 'https://reactnative.cn/docs/0.51/checkbox/'},
+            {key: 'DatePickerIOS', value: 'https://reactnative.cn/docs/0.51/datepickerios/'},
+            {key: 'DrawerLayoutAndroid', value: 'https://reactnative.cn/docs/0.51/drawerlayoutandroid/'},
+            {key: 'FlatList', value: 'https://reactnative.cn/docs/0.51/flatlist/'},
+			{key: 'Image', value: 'https://reactnative.cn/docs/0.51/image/'},
+			{key: 'KeyboardAvoidingView', value: 'https://reactnative.cn/docs/0.51/keyboardavoidingview/'},
+            {key: 'ListView', value: 'https://reactnative.cn/docs/0.51/listview/'},
+            {key: 'ListView.DataSource', value: 'https://reactnative.cn/docs/0.51/listviewdatasource/'},
+            {key: 'MaskedViewIOS', value: 'https://reactnative.cn/docs/0.51/maskedviewios/'},
+            {key: 'Modal', value: 'https://reactnative.cn/docs/0.51/modal/'},
+            {key: 'NavigatorIOS', value: 'https://reactnative.cn/docs/0.51/navigatorios/'},
+            {key: 'Picker', value: 'https://reactnative.cn/docs/0.51/picker/'},
+			{key: 'PickerIOS', value: 'https://reactnative.cn/docs/0.51/pickerios/'},
+			{key: 'ProgressBarAndroid', value: 'https://reactnative.cn/docs/0.51/porgressbarandroid/'},
+            {key: 'ProgressViewIOS', value: 'https://reactnative.cn/docs/0.51/progressviewios/'},
+            {key: 'RefreshControl', value: 'https://reactnative.cn/docs/0.51/refreshcontrol/'},
+            {key: 'ScrollView', value: 'https://reactnative.cn/docs/0.51/scrollview/'},
+            {key: 'SectionList', value: 'https://reactnative.cn/docs/0.51/sectionlist/'},
+            {key: 'SegmentedControlIOS', value: 'https://reactnative.cn/docs/0.51/segmentedcontrolIOS/'},
+            {key: 'Slider', value: 'https://reactnative.cn/docs/0.51/slider/'},
+			{key: 'StatusBar', value: 'https://reactnative.cn/docs/0.51/statusbar/'},
+			{key: 'Switch', value: 'https://reactnative.cn/docs/0.51/switch/'},
+            {key: 'TabBarIOS', value: 'https://reactnative.cn/docs/0.51/tabbarios/'},
+            {key: 'TabBarIOS.Item', value: 'https://reactnative.cn/docs/0.51/tabbariositem/'},
+            {key: 'Text', value: 'https://reactnative.cn/docs/0.51/text/'},
+            {key: 'TextInput', value: 'https://reactnative.cn/docs/0.51/textinput/'},
+            {key: 'ToolBarAndroid', value: 'https://reactnative.cn/docs/0.51/toolbarandroid/'},
+            {key: 'TouchableHighlight', value: 'https://reactnative.cn/docs/0.51/touchablehighlight/'},
+			{key: 'TOuchableNativeFeedback', value: 'https://reactnative.cn/docs/0.51/touchablenativefeedback/'},
+			            {key: 'TouchableOpacity', value: 'https://reactnative.cn/docs/0.51/touchableopacity/'},
+            {key: 'TouchableWithoutFeedback', value: 'https://reactnative.cn/docs/0.51/touchablewithoutfeedback/'},
+			{key: 'View', value: 'https://reactnative.cn/docs/0.51/view/'},
+			{key: 'ViewPagerAndroid', value: 'https://reactnative.cn/docs/0.51/viewpagerandroid/'},
+            {key: 'VirtualizedList', value: 'https://reactnative.cn/docs/0.51/virtualizedlist/'},
+            {key: 'WebView', value: 'https://reactnative.cn/docs/0.51/webview/'},
+          ]}
+		  renderItem={({item})=> (
+			<TouchableHighlight underlayColor="#E1F6FF" onPress={() => this.props.navigate('ComponentDetails', {key: item.key, value: item.value})}>
+				<Text style={styles.item}>{item.key}</Text>
+			</TouchableHighlight>
+		  )}
+        />
+      </View>
+    );
+  }
+}
+
+class ComponentListScreen extends React.Component {
+  static navigationOptions = {
+	title: '组件', 
+	headerStyle: {
+      backgroundColor: '#d81e06',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+	  flex: 1,
+	  textAlign:'center',
+    },
+  };
+  render() {
+    return (
+      <FlatListComponent navigate={this.props.navigation.navigate}/>
+    );
+  }
+}
+
+class ComponentDetailScreen extends React.Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: navigation.getParam('key', 'ComponentDetails'),
+	  headerStyle: {
+        backgroundColor: '#d81e06',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    };
+  };
+  render() {
+	const { navigation } = this.props;
+    const value = navigation.getParam('value', 'http://www.baidu.com');
+  
+    return (
+	  <WebView
+		source={{uri: value}}
+		style={{width:'100%',height:'100%'}}
+	  />
+    );
+  }
+}
+
+const ComponentStack = createStackNavigator({
+  ComponentBase: ComponentListScreen,
+  ComponentDetails: ComponentDetailScreen,
+});
+
+ComponentStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  let animationEnabled = true;
+  let swipeEnabled = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+    animationEnabled = false;
+    swipeEnabled = false;
+  }else {
+	animationEnabled = true;
+    swipeEnabled = true;
+  }
+
+  return {
+    tabBarVisible,
+	animationEnabled,
+	swipeEnabled,
+  };
+};
+
+
+
+
+class FlatListAPI extends React.Component {
+  
+  render() {
+    return (
+      <View style={styles.container}>
+        <FlatList
+          data={[
+            {key: 'ActionSheetIOS', value: 'https://reactnative.cn/docs/0.51/actionsheetios/'},
+            {key: 'Alert', value: 'https://reactnative.cn/docs/0.51/alert/'},
+            {key: 'AlertIOS', value: 'https://reactnative.cn/docs/0.51/alertios/'},
+            {key: 'Animated', value: 'https://reactnative.cn/docs/0.51/animated/'},
+            {key: 'AppRegistry', value: 'https://reactnative.cn/docs/0.51/appregistry/'},
+            {key: 'AppState', value: 'https://reactnative.cn/docs/0.51/appstate/'},
+            {key: 'AsyncStorage', value: 'https://reactnative.cn/docs/0.51/asyncstorage/'},
+			{key: 'BackAndroid', value: 'https://reactnative.cn/docs/0.51/backandroid/'},
+			{key: 'BackHandler', value: 'https://reactnative.cn/docs/0.51/backhandler/'},
+            {key: 'CameraRoll', value: 'https://reactnative.cn/docs/0.51/cameraroll/'},
+            {key: 'Clipboard', value: 'https://reactnative.cn/docs/0.51/clipboard/'},
+            {key: 'DatePickerAndroid', value: 'https://reactnative.cn/docs/0.51/datepickerandroid/'},
+            {key: 'Dimensions', value: 'https://reactnative.cn/docs/0.51/dimensions/'},
+            {key: 'Easing', value: 'https://reactnative.cn/docs/0.51/essing/'},
+            {key: 'Geolocation', value: 'https://reactnative.cn/docs/0.51/geolocation/'},
+			{key: 'ImageEditor', value: 'https://reactnative.cn/docs/0.51/imageeditor/'},
+			{key: 'ImagePickerIOS', value: 'https://reactnative.cn/docs/0.51/imagepickerios/'},
+            {key: 'IamgeStore', value: 'https://reactnative.cn/docs/0.51/imagestore/'},
+            {key: 'InteractionManager', value: 'https://reactnative.cn/docs/0.51/interactionmanager/'},
+            {key: 'Keyboard', value: 'https://reactnative.cn/docs/0.51/keyboard/'},
+            {key: 'LayoutAnimation', value: 'https://reactnative.cn/docs/0.51/layoutanimation/'},
+            {key: 'Linking', value: 'https://reactnative.cn/docs/0.51/linking/'},
+            {key: 'NativeMethodsMixin', value: 'https://reactnative.cn/docs/0.51/nativemethodsmixin/'},
+			{key: 'NetInfo', value: 'https://reactnative.cn/docs/0.51/netinfo/'},
+			{key: 'PanResponder', value: 'https://reactnative.cn/docs/0.51/panresponder/'},
+            {key: 'PermissionsAndroid', value: 'https://reactnative.cn/docs/0.51/permissionsandroid/'},
+            {key: 'PixelRatio', value: 'https://reactnative.cn/docs/0.51/piexlratio/'},
+            {key: 'PushNotificationIOS', value: 'https://reactnative.cn/docs/0.51/pushnotificationios/'},
+            {key: 'Share', value: 'https://reactnative.cn/docs/0.51/share/'},
+            {key: 'StyleSheet', value: 'https://reactnative.cn/docs/0.51/stylesheet/'},
+            {key: 'Systrace', value: 'https://reactnative.cn/docs/0.51/systrace/'},
+			{key: 'TimePickerAndroid', value: 'https://reactnative.cn/docs/0.51/timepickerandroid/'},
+			{key: 'ToastAndroid', value: 'https://reactnative.cn/docs/0.51/toastandroid/'},
+            {key: 'Vibration', value: 'https://reactnative.cn/docs/0.51/vibration/'},
+            {key: '布局属性', value: 'https://reactnative.cn/docs/0.51/layout-props/'},
+            {key: '阴影样式属性', value: 'https://reactnative.cn/docs/0.51/shadow-props/'},
+          ]}
+		  renderItem={({item})=> (
+			<TouchableHighlight underlayColor="#E1F6FF" onPress={() => this.props.navigate('APIDetails', {key: item.key, value: item.value})}>
+				<Text style={styles.item}>{item.key}</Text>
+			</TouchableHighlight>
+		  )}
+        />
+      </View>
+    );
+  }
+}
+
+class APIListScreen extends React.Component {
+  static navigationOptions = {
+	title: 'API', 
+	headerStyle: {
+      backgroundColor: '#d81e06',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+	  flex: 1,
+	  textAlign:'center',
+    },
+  };
+  render() {
+    return (
+      <FlatListAPI navigate={this.props.navigation.navigate}/>
+    );
+  }
+}
+
+class APIDetailScreen extends React.Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: navigation.getParam('key', 'APIDetails'),
+	  headerStyle: {
+        backgroundColor: '#d81e06',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    };
+  };
+  render() {
+	const { navigation } = this.props;
+    const value = navigation.getParam('value', 'http://www.baidu.com');
+  
+    return (
+	  <WebView
+		source={{uri: value}}
+		style={{width:'100%',height:'100%'}}
+	  />
+    );
+  }
+}
+
+const APIStack = createStackNavigator({
+  APIBase: APIListScreen,
+  APIDetails: APIDetailScreen,
+});
+
+APIStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  let animationEnabled = true;
+  let swipeEnabled = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+    animationEnabled = false;
+    swipeEnabled = false;
+  }else {
+	animationEnabled = true;
+    swipeEnabled = true;
+  }
+
+  return {
+    tabBarVisible,
+	animationEnabled,
+	swipeEnabled,
+  };
+};
+
+
 export default TabNavigator(
 {
   基础: BasicStack,
   进阶: AdvanceStack,
   IOS: IOSStack,
   Android: AndroidStack,
+  组件: ComponentStack,
+  API: APIStack,
 },
 {
 	navigationOptions: ({ navigation }) => ({
@@ -409,6 +699,10 @@ export default TabNavigator(
 		  iconName = focused ? require('./images/tab_three_select.png') : require('./images/tab_three.png');
 		} else if (routeName === 'Android') {
 		  iconName = focused ? require('./images/tab_four_select.png') : require('./images/tab_four.png');
+		} else if (routeName === '组件') {
+		  iconName = focused ? require('./images/tab_five_select.png') : require('./images/tab_five.png');
+		} else if (routeName === 'API') {
+		  iconName = focused ? require('./images/tab_six_select.png') : require('./images/tab_six.png');
 		}
 
 		return <Image source={iconName} style={{width: 25, height: 25}} />;
